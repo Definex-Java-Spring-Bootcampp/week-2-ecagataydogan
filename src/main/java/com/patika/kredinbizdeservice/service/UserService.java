@@ -1,5 +1,6 @@
 package com.patika.kredinbizdeservice.service;
 
+import com.patika.kredinbizdeservice.model.Application;
 import com.patika.kredinbizdeservice.model.User;
 import com.patika.kredinbizdeservice.repository.UserRepository;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -61,5 +62,16 @@ public class UserService implements IUserService {
         userRepository.save(foundUser.get());
 
         return foundUser.get();
+    }
+
+    @Override
+    public List<Application> getApplicationsByEmail(String email) {
+        User user = getByEmail(email);
+        if (user != null) {
+            return user.getApplicationList();
+        } else {
+            return null;
+        }
+
     }
 }

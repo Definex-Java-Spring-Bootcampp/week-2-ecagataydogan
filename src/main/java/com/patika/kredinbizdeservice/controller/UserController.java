@@ -1,5 +1,6 @@
 package com.patika.kredinbizdeservice.controller;
 
+import com.patika.kredinbizdeservice.model.Application;
 import com.patika.kredinbizdeservice.model.User;
 import com.patika.kredinbizdeservice.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,11 @@ public class UserController {
         }
 
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("applications/{email}")
+    public List<Application> getApplicationsByEmail(@PathVariable String email) {
+        return userService.getApplicationsByEmail(email);
     }
 
 
